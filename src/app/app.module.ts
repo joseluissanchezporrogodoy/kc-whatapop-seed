@@ -20,7 +20,7 @@ import { ProductsCollectionComponent } from './products-collection/products-coll
 import { SoldProductsResolveService } from './sold-products-resolve.service';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserService } from './user.service';
-import {PublicationDatePipe} from "./publication-date.pipe";
+import {PublicationDatePipe} from './publication-date.pipe';
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
 | Blue Path                                                        |
