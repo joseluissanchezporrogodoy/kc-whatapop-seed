@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
 import { Product } from '../product';
 
@@ -21,5 +21,8 @@ export class ProductComponent {
   | de este componente, necesitas, además, un manejador para el      |
   | mismo.                                                           |
   |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
+ @Output() selectedProduct: EventEmitter<number> = new EventEmitter<number>();
+  onProductClick(productId): void {
+    this.selectedProduct.emit(productId);
+  }
 }
