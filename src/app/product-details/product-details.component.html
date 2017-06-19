@@ -9,7 +9,7 @@
         'info': product.category.id === 1,
         'alert': product.category.id === 2,
         'warning': product.category.id === 3 }">
-        {{ product.category.name }}
+        {{ product.category.name  }}
       </span>
 
       <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -20,7 +20,7 @@
       |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
 
       <span>
-        {{ product.publishedDate }}
+        {{ product.publishedDate | transformDate}}
       </span>
     </p>
     <p [innerHtml]="product.description"></p>
