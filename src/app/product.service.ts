@@ -45,6 +45,21 @@ export class ProductService {
     |       category.id=x (siendo x el identificador de la categoría)  |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
+    let filtroTexto = '';
+    let filtroCategoria = '';
+    if (filter !== null) {
+        if (filter.text != null) {
+          filtroTexto = 'q=' + filter.text;
+          console.log(filtroTexto);
+        }
+        if (filter.category != null) {
+          filtroCategoria = 'category.id=' + filter.category;
+          if (filter.category === '0') {
+            filtroCategoria = '';
+          }
+          console.log(filtroCategoria);
+        }
+    }
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Yellow Path                                                      |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -60,7 +75,7 @@ export class ProductService {
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     return this._http
-      .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC`)
+      .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&${filtroTexto}&${filtroCategoria}` )
       .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
   }
 
