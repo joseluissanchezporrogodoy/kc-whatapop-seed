@@ -45,26 +45,6 @@ export class ProductService {
     |       category.id=x (siendo x el identificador de la categoría)  |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
-    let filtroTexto = '';
-    let filtroCategoria = '';
-    let filtroState = '';
-    if (filter !== null) {
-      console.log(filter.state);
-        if (filter.text != null) {
-          filtroTexto = 'q=' + filter.text;
-          console.log(filtroTexto);
-        }
-        if (filter.category != null) {
-          filtroCategoria = 'category.id=' + filter.category;
-          if (filter.category === '0') {
-            filtroCategoria = '';
-          }
-          console.log(filtroCategoria);
-        }
-        if (filter.state != null) {
-          filtroState = 'state =' + filter.state;
-        }
-    }
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Yellow Path                                                      |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -78,6 +58,24 @@ export class ProductService {
     |   - Búsqueda por estado:                                         |
     |       state=x (siendo x el estado)                               |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    let filtroTexto = '';
+    let filtroCategoria = '';
+    let filtroState = '';
+    if (filter !== null) {
+      console.log(filter.state);
+      if (filter.text != null) {
+        filtroTexto = 'q=' + filter.text;
+      }
+      if (filter.category != null) {
+        filtroCategoria = 'category.id=' + filter.category;
+        if (filter.category === '0') {
+          filtroCategoria = '';
+        }
+      }
+      if (filter.state != null) {
+        filtroState = 'state =' + filter.state;
+      }
+    }
 
     return this._http
       .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&${filtroTexto}&${filtroCategoria}&${filtroState}` )
