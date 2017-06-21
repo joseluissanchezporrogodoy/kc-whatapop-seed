@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
-
+import {Subject} from 'rxjs/Subject';
 import { Product } from './product';
+import { ProductFilter } from './product-filter';
+import { ProductService } from './product.service';
+
 
 @Injectable()
 export class SoldProductsResolveService implements Resolve<Product[]> {
 
-  resolve(route: ActivatedRouteSnapshot): Observable<Product[]> {
+  constructor(private _productService: ProductService) {}
 
+  resolve(route: ActivatedRouteSnapshot): Observable<Product[]> {
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
     | Yellow Path                                                      |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -22,8 +26,11 @@ export class SoldProductsResolveService implements Resolve<Product[]> {
     |    productos vendidos. Toca ir a servidor a través del servicio  |
     |    ProductService, que tendrás que inyectar como dependencia.    |
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+    const productFilter: ProductFilter = <ProductFilter>{
+      state: 'sold'
+    };
 
-    return null;
+    return this._productService.getProducts(productFilter);
   }
 
 }

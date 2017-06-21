@@ -47,7 +47,9 @@ export class ProductService {
 
     let filtroTexto = '';
     let filtroCategoria = '';
+    let filtroState = '';
     if (filter !== null) {
+      console.log(filter.state);
         if (filter.text != null) {
           filtroTexto = 'q=' + filter.text;
           console.log(filtroTexto);
@@ -58,6 +60,9 @@ export class ProductService {
             filtroCategoria = '';
           }
           console.log(filtroCategoria);
+        }
+        if (filter.state != null) {
+          filtroState = 'state =' + filter.state;
         }
     }
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|
@@ -75,7 +80,7 @@ export class ProductService {
     |~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 
     return this._http
-      .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&${filtroTexto}&${filtroCategoria}` )
+      .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&${filtroTexto}&${filtroCategoria}&${filtroState}` )
       .map((data: Response): Product[] => Product.fromJsonToList(data.json()));
   }
 
