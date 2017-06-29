@@ -13,20 +13,27 @@ export class LikeComponent implements OnInit {
   }
   onFavoriteClick(): void {
     console.log(this.productoID);
-    //Guardar el producto
-    if (typeof(Storage) !== "undefined") {
-      localStorage.setItem(this.productoID.toString(), this.productoID.toString());
+    let valor;
+    valor =  localStorage.getItem(this.productoID.toString());
+    if (valor != null) {
+      //Eliminar
+      if (typeof(Storage) !== 'undefined') {
+        localStorage.removeItem(this.productoID.toString());
+      }
+    }else {
+      //Guardar
+      if (typeof(Storage) !== 'undefined') {
+        localStorage.setItem(this.productoID.toString(), this.productoID.toString());
+      }
     }
   }
 
-  isFavorite(productId: number): boolean {
+  isFavorite(): string {
     let valor;
-
     valor =  localStorage.getItem(this.productoID.toString());
-    if(valor != null) {
-      console.log("almacen");
-      console.log(valor);
-    }
-    return null;
+     if (valor != null) {
+      return 'fa-heart';
+     }
+     return 'fa-heart-o';
   }
 }

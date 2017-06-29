@@ -1,6 +1,7 @@
 <div class="row" *ngIf="product">
-  <div class="medium-4 columns">
+  <div class="medium-4 columns ">
     <img [src]="product.photo" class="thumbnail" />
+
   </div>
   <div class="medium-8 columns">
     <h3>{{ product.name }}</h3>
@@ -22,11 +23,8 @@
       <span>
         {{ product.publishedDate | transformDate}}
       </span>
-      <span>
-        <app-like [productoID]="product.id">
+      <span><app-like [productoID]="product.id"></app-like></span>
 
-        </app-like>
-      </span>
     </p>
     <p [innerHtml]="product.description"></p>
     <app-user-profile [userId]="product.seller.id"></app-user-profile>
