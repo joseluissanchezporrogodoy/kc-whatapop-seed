@@ -15,13 +15,18 @@ export class LikeComponent implements OnInit {
     console.log(this.productoID);
     //Guardar el producto
     if (typeof(Storage) !== "undefined") {
-      // Setter
-      //localStorage.setItem("pageSize", 10);
+      localStorage.setItem(this.productoID.toString(), this.productoID.toString());
     }
   }
 
   isFavorite(productId: number): boolean {
-    console.log("ha ejecutado");
+    let valor;
+
+    valor =  localStorage.getItem(this.productoID.toString());
+    if(valor != null) {
+      console.log("almacen");
+      console.log(valor);
+    }
     return null;
   }
 }
