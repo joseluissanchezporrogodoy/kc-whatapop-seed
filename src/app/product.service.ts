@@ -73,9 +73,13 @@ export class ProductService {
         }
       }
       if (filter.state != null) {
-        filtroState = 'state =' + filter.state;
+        filtroState = 'state=' + filter.state;
+        if (filter.state === '-') {
+          filtroState = '';
+        }
       }
     }
+    console.log(filtroState);
 
     return this._http
       .get(`${this._backendUri}/products?_sort=publishedDate&_order=DESC&${filtroTexto}&${filtroCategoria}&${filtroState}` )

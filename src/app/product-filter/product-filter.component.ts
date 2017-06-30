@@ -16,6 +16,7 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
 
   productFilter: ProductFilter = {};
   categories: Category[];
+  states: string [];
   private _categoriesSubscription: Subscription;
 
   constructor(private _categoryService: CategoryService) { }
@@ -24,6 +25,7 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
     this._categoriesSubscription = this._categoryService
       .getCategories()
       .subscribe((data: Category[]) => this.categories = data);
+    this.states = ['-','selling','sold'];
   }
 
   ngOnDestroy(): void {
@@ -31,7 +33,9 @@ export class ProductFilterComponent implements OnDestroy, OnInit {
   }
 
   notifyHost(): void {
+    console.log(this.productFilter);
     this.onSearch.emit(this.productFilter);
+
   }
 
 }
