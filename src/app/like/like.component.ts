@@ -32,8 +32,8 @@ export class LikeComponent implements OnInit {
     let valor;
     valor =  localStorage.getItem(this.productoID.toString());
      if (valor != null) {
-      return 'fa-heart';
+      return 'fa-star';
      }
-     return 'fa-heart-o';
+     return 'fa-star-o';
   }
 }
